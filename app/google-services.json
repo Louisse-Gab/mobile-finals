@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "272571281318",
+    "project_id": "sports-mobile-application01",
+    "storage_bucket": "sports-mobile-application01.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272571281318:android:5a55fff9cc3bc584442967",
+        "android_client_info": {
+          "package_name": "com.example.lizentuveraproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7tTSoZWlqeauV6OrVqHqp-um89WSHlNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
