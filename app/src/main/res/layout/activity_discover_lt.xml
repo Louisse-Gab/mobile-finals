@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EDEDED"
+    tools:context=".discoverlt">
+
+    <!-- ================= DARK HEADER ================= -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/LTdiscover_header"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="#21242B"
+        android:padding="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/LTdiscover_tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Discover"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/LTdiscover_tvSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Latest news and highlights for PVL and Japan WNT."
+            android:textColor="#BFC3C9"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/LTdiscover_tvTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ================= NAVBAR (65dp) ================= -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/LTdiscover_navCard"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_margin="18dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/LTdiscover_navInner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="20dp">
+
+            <ImageButton
+                android:id="@+id/LTdiscover_navHome"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_home"
+                app:tint="#21242B" />
+
+            <ImageButton
+                android:id="@+id/LTdiscover_navDiscover"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_discover"
+                app:tint="#FF7A00" />
+
+            <ImageButton
+                android:id="@+id/LTdiscover_navCommunity"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/lt_nav_center_bg"
+                android:src="@drawable/ic_community"
+                app:tint="#21242B" />
+
+            <ImageButton
+                android:id="@+id/LTdiscover_navProfile"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_profile"
+                app:tint="#21242B" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- ================= SCROLLABLE CONTENT ================= -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/LTdiscover_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/LTdiscover_header"
+        app:layout_constraintBottom_toTopOf="@id/LTdiscover_navCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/LTdiscover_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- HERO IMAGE -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_cardHero"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp">
+
+                <ImageView
+                    android:id="@+id/LTdiscover_ivHero"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/pvl_logo" />
+            </androidx.cardview.widget.CardView>
+
+            <!-- TEAM SELECTOR -->
+            <LinearLayout
+                android:id="@+id/LTdiscover_teamButtons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/LTdiscover_btnPVL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:background="#21242B"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:text="PVL"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/LTdiscover_btnJapan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:text="Japan WNT"
+                    android:textColor="#21242B"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- LATEST NEWS -->
+            <TextView
+                android:id="@+id/LTdiscover_tvLatest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Latest News"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#21242B" />
+
+            <!-- NEWS ITEM TEMPLATE (x5) -->
+            <!-- You can duplicate/delete freely -->
+
+            <!-- ITEM 1 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews1"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_1" />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alas Women fall to Indonesia in SEA Games bronze match"
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas came up short once more against Indonesia, losing 26-28, 25-13, 28-30, 24-26 in the bronze medal match of the 33rd Southeast Asian Games at Hua Mark Indoor Stadium in Bangkok, Thailand.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 2 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews2"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_2" />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alas Women sweep Singapore, advance to semifinals"
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas Women overcame their opening loss to Thailand with a commanding 25-13, 25-8, 25-18 win over Singapore on Friday, earning a place in the semifinals of the 33rd Southeast Asian Games at the Indoor Stadium Huamark.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 3 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews3"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_3" />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alas Beach dominates Singapore to stay perfect"
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas Women Beach kept its flawless start in the 33rd Southeast Asian Games, sweeping Singapore 2-0 in the beach volleyball competition on Saturday at Sport Arena Jomtien Beach.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 4 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews4"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_4"
+                         />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bella Belen hopes to make SEAG debut unforgettable "
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="For 23-year-old Bella Belen, Tuesday night was a night of nostalgia and national pride. The Alas Pilipinas star spiker stepped onto the world stage at the Rajamangala National Stadium in Bangkok wearing a world-class Avel Bacudio-designed barong tagalog—a style dubbed “Laro ng Lahi”—perhaps for the first time since her elementary and high school days.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 5 -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews5"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_5"
+                         />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alas Women dealt early setback, faces must-win vs Singapore "
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas Women opened their 33rd Southeast Asian Games campaign with a loss, dropping a straight-sets match, 11-25, 17-25, 16-25, to host and defending champion Thailand on Thursday at the Indoor Stadium Huamark.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 6 (NEW) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews6"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_6"
+                         />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alas Women's gold hopes dashed, but bronze still in sight "
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas Women’s volleyball team saw its gold medal dream dashed after falling to Vietnam in straight sets, 25-17, 25-14, 25-17, on Sunday at the 33rd Southeast Asian Games in Bangkok, Thailand.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ITEM 7 (NEW) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/LTdiscover_news7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/LTdiscover_rowNews7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:id="@+id/LTdiscover_ivNews7"
+                        android:layout_width="90dp"
+                        android:layout_height="70dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/discover_7"
+                         />
+
+                    <LinearLayout
+                        android:id="@+id/LTdiscover_newsTextWrap7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsTitle7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="De Guzman banks on chemistry, experience in Alas Women's SEAG campaign "
+                            android:textColor="#21242B"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/LTdiscover_tvNewsSub7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:maxLines="2"
+                            android:text="Alas Pilipinas Women enter the 33rd Southeast Asian Games in Bangkok, Thailand, armed with chemistry, experience, and the determination to end the country’s two-decade wait for a volleyball podium finish. The tournament runs from December 10 to 19.  "
+                            android:textColor="#6B6B6B"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
