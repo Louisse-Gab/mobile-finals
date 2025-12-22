@@ -16,7 +16,7 @@
             android:exported="true" />
         <activity
             android:name=".Post_LT"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Community_LT"
             android:exported="true" />
