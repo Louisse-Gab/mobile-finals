@@ -129,16 +129,16 @@
         <!-- Signup button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/LTbtnSignup"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_width="168dp"
+            android:layout_height="59dp"
             android:layout_marginTop="24dp"
+            android:backgroundTint="#21242B"
             android:text="SIGN UP"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#21242B"
             app:cornerRadius="24dp"
-            app:layout_constraintTop_toBottomOf="@id/LTtilPasswordSignup"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/LTtilPasswordSignup" />
 
         <!-- Separator -->
         <LinearLayout

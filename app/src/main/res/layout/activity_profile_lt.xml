@@ -27,6 +27,7 @@
             android:textColor="#21242B"
             android:textSize="18sp"
             android:textStyle="bold"
+            tools:ignore="HardcodedText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,14 +35,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- ================= NAVBAR (height 65dp) ================= -->
+    <!-- ================= NAVBAR (65dp) ================= -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/LTprofile_navCard"
+        android:id="@+id/LTdiscover_navCard"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="18dp"
+        android:layout_margin="18dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,59 +48,57 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/LTprofile_navInner"
+            android:id="@+id/LTdiscover_navInner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+            android:paddingHorizontal="20dp">
 
             <ImageButton
-                android:id="@+id/LTprofile_nav_btnHome"
+                android:id="@+id/LTdiscover_navHome"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Home"
-                android:padding="10dp"
                 android:src="@drawable/ic_home"
-                app:tint="#21242B" />
+                app:tint="#21242B"
+                tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_nav_btnDiscover"
+                android:id="@+id/LTdiscover_navDiscover"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Discover"
-                android:padding="10dp"
                 android:src="@drawable/ic_discover"
-                app:tint="#21242B" />
+                app:tint="#21242B"
+                tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_nav_btnCommunity"
+                android:id="@+id/LTdiscover_navCommunity"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/lt_nav_center_bg"
                 android:contentDescription="Community"
-                android:padding="12dp"
                 android:src="@drawable/ic_community"
-                app:tint="#21242B" />
+                app:tint="#21242B"
+                tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_nav_btnProfile"
+                android:id="@+id/LTdiscover_navProfile"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Profile"
-                android:padding="10dp"
                 android:src="@drawable/ic_profile"
-                app:tint="#FF7A00" />
+                app:tint="#FF7A00"
+                tools:ignore="HardcodedText" />
         </LinearLayout>
-
     </androidx.cardview.widget.CardView>
 
     <!-- ================= SCROLLABLE CONTENT ================= -->
@@ -111,7 +108,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/LTprofile_topBar"
-        app:layout_constraintBottom_toTopOf="@id/LTprofile_navCard"
+        app:layout_constraintBottom_toTopOf="@id/LTdiscover_navCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -131,7 +128,8 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:visibility="gone"
-                tools:text="user_12345" />
+                tools:text="user_12345"
+                tools:ignore="HardcodedText" />
 
             <!-- ===== Profile picture + edit icon ===== -->
             <FrameLayout
@@ -149,7 +147,7 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile"
                     android:clipToOutline="true"
-                    tools:ignore="HardcodedText" />
+                    tools:ignore="HardcodedText,UnusedAttribute,ContentDescription,ImageContrastWarning" />
 
             </FrameLayout>
 
@@ -164,7 +162,8 @@
                 android:textColor="#21242B"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                tools:text="(bind from tbl_users.name)" />
+                tools:text="(bind from tbl_users.name)"
+                tools:ignore="HardcodedText" />
 
             <!-- Stats row -->
             <LinearLayout
@@ -192,7 +191,8 @@
                         android:text="1,089"
                         android:textColor="#21242B"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/LTprofile_tvFollowersLabel"
@@ -200,7 +200,8 @@
                         android:layout_height="wrap_content"
                         android:text="Followers"
                         android:textColor="#8A8A8A"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText,TextContrastCheck" />
                 </LinearLayout>
 
                 <View
@@ -224,7 +225,8 @@
                         android:text="275"
                         android:textColor="#21242B"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/LTprofile_tvFollowingLabel"
@@ -232,7 +234,8 @@
                         android:layout_height="wrap_content"
                         android:text="Following"
                         android:textColor="#8A8A8A"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText,TextContrastCheck" />
                 </LinearLayout>
 
                 <View
@@ -256,7 +259,8 @@
                         android:text="10"
                         android:textColor="#21242B"
                         android:textSize="16sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/LTprofile_tvEventsLabel"
@@ -264,7 +268,8 @@
                         android:layout_height="wrap_content"
                         android:text="Events"
                         android:textColor="#8A8A8A"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:ignore="HardcodedText,TextContrastCheck" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -277,7 +282,8 @@
                 android:text="About Me"
                 android:textColor="#21242B"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/LTprofile_tvAboutBody"
@@ -287,7 +293,8 @@
                 android:text="Pellentesque mattis scelerisque aliquam tincidunt lacus. Convallis tortor et tincidunt cras fringilla aliquet amet..."
                 android:textColor="#7A7A7A"
                 android:textSize="13sp"
-                android:lineSpacingExtra="2dp" />
+                android:lineSpacingExtra="2dp"
+                tools:ignore="HardcodedText,TextContrastCheck" />
 
             <TextView
                 android:id="@+id/LTprofile_tvReadMore"
@@ -297,7 +304,8 @@
                 android:text="Read More"
                 android:textColor="#FF7A00"
                 android:textSize="13sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,TextContrastCheck" />
 
             <!-- Interest -->
             <TextView
@@ -308,7 +316,8 @@
                 android:text="Interest"
                 android:textColor="#21242B"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <!-- Favorite Sports (tbl_users.favorite_sports) -->
             <TextView
@@ -319,7 +328,8 @@
                 android:text="Favorite Sports"
                 android:textColor="#8A8A8A"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,TextContrastCheck" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/LTprofile_chipGroupSports"
@@ -330,24 +340,26 @@
                 app:chipSpacingHorizontal="10dp"
                 app:chipSpacingVertical="10dp">
 
-                <!-- placeholders (replace with Firebase array later) -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipSport1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volleyball" />
+                    android:text="Volleyball"
+                    tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipSport2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Basketball" />
+                    android:text="Basketball"
+                    tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipSport3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Badminton" />
+                    android:text="Badminton"
+                    tools:ignore="HardcodedText" />
             </com.google.android.material.chip.ChipGroup>
 
             <!-- Favorite Teams (tbl_users.favorite_teams) -->
@@ -359,7 +371,8 @@
                 android:text="Favorite Teams"
                 android:textColor="#8A8A8A"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,TextContrastCheck" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/LTprofile_chipGroupTeams"
@@ -370,24 +383,26 @@
                 app:chipSpacingHorizontal="10dp"
                 app:chipSpacingVertical="10dp">
 
-                <!-- placeholders (replace with Firebase array later) -->
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipTeam1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Japan WNT" />
+                    android:text="Japan WNT"
+                    tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipTeam2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PVL Team" />
+                    android:text="PVL Team"
+                    tools:ignore="HardcodedText" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/LTprofile_chipTeam3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Creamline" />
+                    android:text="Creamline"
+                    tools:ignore="HardcodedText" />
             </com.google.android.material.chip.ChipGroup>
 
             <!-- bottom spacer so content won't hide behind navbar -->

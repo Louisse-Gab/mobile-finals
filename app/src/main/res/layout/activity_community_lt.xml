@@ -66,19 +66,21 @@
             <ImageButton
                 android:id="@+id/LTcommunity_navHome"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_home"
+                android:contentDescription="Home"
                 app:tint="#21242B" />
 
             <ImageButton
                 android:id="@+id/LTcommunity_navDiscover"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_discover"
+                android:contentDescription="Discover"
                 app:tint="#21242B" />
 
             <ImageButton
@@ -88,15 +90,17 @@
                 android:layout_weight="1"
                 android:background="@drawable/lt_nav_center_bg"
                 android:src="@drawable/ic_community"
+                android:contentDescription="Community"
                 app:tint="#FF7A00" />
 
             <ImageButton
                 android:id="@+id/LTcommunity_navProfile"
                 android:layout_width="0dp"
-                android:layout_height="44dp"
+                android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_profile"
+                android:contentDescription="Profile"
                 app:tint="#21242B" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -153,7 +157,10 @@
                         android:gravity="top|start"
                         android:padding="12dp"
                         android:background="@android:color/transparent"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:textColor="#21242B"
+                        android:textColorHint="#6B6B6B"
+                        android:autofillHints="postMessage" />
 
                     <!-- image preview holder (optional) -->
                     <ImageView
@@ -178,14 +185,14 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/LTcommunity_btnAddImage"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="48dp"
                             android:text="Add Image"
                             app:cornerRadius="16dp" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/LTcommunity_btnPost"
                             android:layout_width="wrap_content"
-                            android:layout_height="40dp"
+                            android:layout_height="48dp"
                             android:layout_marginStart="10dp"
                             android:text="Post"
                             android:textColor="#FFFFFF"

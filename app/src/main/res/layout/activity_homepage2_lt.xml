@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EDEDED"
-    tools:context=".homepage2_LT">
+    tools:context=".homepage2_lt">
 
     <!-- ================= HEADER ================= -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,70 +44,63 @@
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- ================= NAVBAR ================= -->
+    <!-- ================= NAVBAR (UPDATED) ================= -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/LThome_navCard"
+        android:id="@+id/LTdiscover_navCard"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="18dp"
+        android:layout_margin="18dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/LThome_navInner"
+            android:id="@+id/LTdiscover_navInner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp">
+            android:paddingHorizontal="20dp">
 
             <ImageButton
-                android:id="@+id/LTnav_btnHome"
+                android:id="@+id/LTdiscover_navHome"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Home"
-                android:padding="10dp"
                 android:src="@drawable/ic_home"
-                app:tint="#21242B" />
+                app:tint="#FF7A00" />
 
             <ImageButton
-                android:id="@+id/LTnav_btnDiscover"
+                android:id="@+id/LTdiscover_navDiscover"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Discover"
-                android:padding="10dp"
                 android:src="@drawable/ic_discover"
                 app:tint="#21242B" />
 
             <ImageButton
-                android:id="@+id/LTnav_btnCommunity"
+                android:id="@+id/LTdiscover_navCommunity"
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/lt_nav_center_bg"
                 android:contentDescription="Community"
-                android:padding="12dp"
                 android:src="@drawable/ic_community"
                 app:tint="#21242B" />
 
             <ImageButton
-                android:id="@+id/LTnav_btnProfile"
+                android:id="@+id/LTdiscover_navProfile"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:contentDescription="Profile"
-                android:padding="10dp"
                 android:src="@drawable/ic_profile"
                 app:tint="#21242B" />
         </LinearLayout>
@@ -120,7 +113,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/LThome_header"
-        app:layout_constraintBottom_toTopOf="@id/LThome_navCard"
+        app:layout_constraintBottom_toTopOf="@id/LTdiscover_navCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
