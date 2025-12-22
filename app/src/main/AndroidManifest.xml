@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LizenTuveraProject">
         <activity
+            android:name=".signupLT"
+            android:exported="true" />
+        <activity
             android:name=".Post_LT"
             android:exported="false" />
         <activity
@@ -19,9 +22,6 @@
             android:exported="true" />
         <activity
             android:name=".Discover_LT"
-            android:exported="true" />
-        <activity
-            android:name=".homepage2_lt"
             android:exported="true" />
         <activity
             android:name=".profileLT"

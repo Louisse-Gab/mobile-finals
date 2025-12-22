@@ -37,13 +37,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Catch the latest from the PVL and world volleyball."
+            android:fontFamily="@font/archivo"
+            android:text="Catch the latest from the PVL volleyball."
             android:textColor="#BFC3C9"
             android:textSize="14sp"
-            android:fontFamily="@font/archivo"
-            tools:ignore="HardcodedText"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/LThome_tvHello"
-            app:layout_constraintStart_toStartOf="parent" />
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- ================= NAVBAR (UPDATED) ================= -->
@@ -130,55 +130,13 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- ===== TEAM SELECTOR ===== -->
-            <HorizontalScrollView
-                android:id="@+id/LThome_teamScroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="none">
-
-                <LinearLayout
-                    android:id="@+id/LThome_teamChips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/LThome_chipPVL"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:background="#21242B"
-                        android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
-                        android:text="PVL Team"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/LThome_chipJapan"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginStart="10dp"
-                        android:background="#FFFFFF"
-                        android:gravity="center"
-                        android:paddingStart="14dp"
-                        android:paddingEnd="14dp"
-                        android:text="Japan WNT"
-                        android:textColor="#21242B"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <!-- ===== SECTION TITLE (PLACEHOLDER) ===== -->
+            <!-- ===== SECTION TITLE (PVL ONLY) ===== -->
             <TextView
                 android:id="@+id/LThome_tvTopStories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="Top Stories"
+                android:text="Top Stories (PVL)"
                 android:textColor="#21242B"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -272,7 +230,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="Japan WNT vs Opponent"
+                            android:text="PVL Team vs Opponent"
                             android:textColor="#1E1E1E"
                             android:textSize="14sp"
                             tools:ignore="HardcodedText" />
@@ -298,7 +256,7 @@
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
-            <!-- ===== FEATURED HIGHLIGHT ===== -->
+            <!-- ===== FEATURED HIGHLIGHT (PVL) ===== -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/LThome_cardFeatured"
                 android:layout_width="match_parent"
@@ -325,7 +283,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="Top Rally of the Week • Japan WNT"
+                        android:text="PVL • Best Rally Compilation"
                         android:textColor="#1E1E1E"
                         android:textSize="14sp"
                         tools:ignore="HardcodedText" />
@@ -338,15 +296,9 @@
                         android:background="#D9D9D9"
                         android:contentDescription="Featured highlight thumbnail"
                         android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/discover_1"
                         tools:ignore="HardcodedText" />
 
-                    <Button
-                        android:id="@+id/LThome_btnWatch"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="10dp"
-                        android:text="Watch Highlight"
-                        tools:ignore="HardcodedText,ButtonSize" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -382,9 +334,8 @@
                 android:background="#FFFFFF"
                 android:orientation="vertical"
                 app:cardCornerRadius="14dp"
-                app:cardElevation="3dp">
+                app:cardElevation="3dp" />
 
-            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

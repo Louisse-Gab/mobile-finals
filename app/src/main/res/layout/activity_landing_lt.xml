@@ -8,8 +8,6 @@
     android:background="#21242B"
     tools:context=".landing">
 
-    <!-- Logo -->
-
 
     <!-- Bottom buttons -->
     <ImageView

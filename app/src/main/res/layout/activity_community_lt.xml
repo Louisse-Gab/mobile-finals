@@ -163,16 +163,6 @@
                         android:autofillHints="postMessage" />
 
                     <!-- image preview holder (optional) -->
-                    <ImageView
-                        android:id="@+id/LTcommunity_ivPostPreview"
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#D9D9D9"
-                        android:scaleType="centerCrop"
-                        android:visibility="gone"
-                        tools:visibility="visible"
-                        tools:ignore="ContentDescription" />
 
                     <LinearLayout
                         android:id="@+id/LTcommunity_createPostActions"
@@ -242,6 +232,7 @@
                         android:layout_marginTop="8dp"
                         android:background="#D9D9D9"
                         android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/discover_2"
                         tools:ignore="ContentDescription" />
 
                     <LinearLayout
