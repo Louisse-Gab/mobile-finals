@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/LTprofile_root"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5"
@@ -37,7 +37,7 @@
 
     <!-- ================= NAVBAR (65dp) ================= -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/LTprofile_navCard"
+        android:id="@+id/LTdiscover_navCard"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_margin="18dp"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/LTprofile_navInner"
+            android:id="@+id/LTdiscover_navInner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -56,7 +56,7 @@
             android:paddingHorizontal="20dp">
 
             <ImageButton
-                android:id="@+id/LTprofile_navHome"
+                android:id="@+id/LTdiscover_navHome"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -67,7 +67,7 @@
                 tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_navDiscover"
+                android:id="@+id/LTdiscover_navDiscover"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -78,7 +78,7 @@
                 tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_navCommunity"
+                android:id="@+id/LTdiscover_navCommunity"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -89,7 +89,7 @@
                 tools:ignore="HardcodedText" />
 
             <ImageButton
-                android:id="@+id/LTprofile_navProfile"
+                android:id="@+id/LTdiscover_navProfile"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -98,6 +98,7 @@
                 android:src="@drawable/ic_profile"
                 app:tint="#FF7A00"
                 tools:ignore="HardcodedText" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -108,7 +109,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintTop_toBottomOf="@id/LTprofile_topBar"
-        app:layout_constraintBottom_toTopOf="@id/LTprofile_navCard"
+        app:layout_constraintBottom_toTopOf="@id/LTdiscover_navCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -131,7 +132,7 @@
                 tools:text="user_12345"
                 tools:ignore="HardcodedText" />
 
-            <!-- ===== Profile picture ===== -->
+            <!-- ===== Profile picture + edit icon ===== -->
             <FrameLayout
                 android:id="@+id/LTprofile_photoWrap"
                 android:layout_width="120dp"
@@ -319,7 +320,7 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
-            <!-- Favorite Sports -->
+            <!-- Favorite Sports (tbl_users.favorite_sports) -->
             <TextView
                 android:id="@+id/LTprofile_tvFavSportsLabel"
                 android:layout_width="wrap_content"
@@ -362,7 +363,7 @@
                     tools:ignore="HardcodedText" />
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- Favorite Teams -->
+            <!-- Favorite Teams (tbl_users.favorite_teams) -->
             <TextView
                 android:id="@+id/LTprofile_tvFavTeamsLabel"
                 android:layout_width="wrap_content"
@@ -405,21 +406,11 @@
                     tools:ignore="HardcodedText" />
             </com.google.android.material.chip.ChipGroup>
 
-            <!-- ================= LOGOUT BUTTON ================= -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/LTprofile_btnLogout"
-                android:layout_width="149dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="#D32F2F"
-                android:text="Log Out"
-                android:textAllCaps="false"
-                android:textColor="#FFFFFF"
-                app:cornerRadius="24dp"
-                tools:ignore="HardcodedText" />
-
             <!-- bottom spacer so content won't hide behind navbar -->
+            <View
+                android:id="@+id/LTprofile_bottomSpacer"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
