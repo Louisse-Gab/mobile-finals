@@ -5,7 +5,7 @@
       <SelectionState runConfigName="signupLT">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="landing">
+      <SelectionState runConfigName="signupLT (1)">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
