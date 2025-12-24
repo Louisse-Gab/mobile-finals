@@ -27,7 +27,6 @@
             android:textColor="#21242B"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:ignore="HardcodedText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -63,8 +62,7 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="Home"
                 android:src="@drawable/ic_home"
-                app:tint="#21242B"
-                tools:ignore="HardcodedText" />
+                app:tint="#21242B" />
 
             <ImageButton
                 android:id="@+id/LTdiscover_navDiscover"
@@ -74,8 +72,7 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="Discover"
                 android:src="@drawable/ic_discover"
-                app:tint="#21242B"
-                tools:ignore="HardcodedText" />
+                app:tint="#21242B" />
 
             <ImageButton
                 android:id="@+id/LTdiscover_navCommunity"
@@ -85,8 +82,7 @@
                 android:background="@drawable/lt_nav_center_bg"
                 android:contentDescription="Community"
                 android:src="@drawable/ic_community"
-                app:tint="#21242B"
-                tools:ignore="HardcodedText" />
+                app:tint="#21242B" />
 
             <ImageButton
                 android:id="@+id/LTdiscover_navProfile"
@@ -96,8 +92,7 @@
                 android:background="@android:color/transparent"
                 android:contentDescription="Profile"
                 android:src="@drawable/ic_profile"
-                app:tint="#FF7A00"
-                tools:ignore="HardcodedText" />
+                app:tint="#FF7A00" /> <!-- Highlighted orange for active page -->
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -123,16 +118,7 @@
             android:paddingTop="14dp"
             android:paddingBottom="18dp">
 
-            <!-- ===== USER ID (hidden, for binding later) ===== -->
-            <TextView
-                android:id="@+id/LTprofile_tvUserId"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="gone"
-                tools:text="user_12345"
-                tools:ignore="HardcodedText" />
-
-            <!-- ===== Profile picture + edit icon ===== -->
+            <!-- Profile Picture -->
             <FrameLayout
                 android:id="@+id/LTprofile_photoWrap"
                 android:layout_width="120dp"
@@ -147,24 +133,20 @@
                     android:contentDescription="Profile picture"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile"
-                    android:clipToOutline="true"
-                    tools:ignore="HardcodedText,UnusedAttribute,ContentDescription,ImageContrastWarning" />
-
+                    android:clipToOutline="true" />
             </FrameLayout>
 
-            <!-- Name (tbl_users.name) -->
+            <!-- Name -->
             <TextView
                 android:id="@+id/LTprofile_tvName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
-                android:text="Louisse Lizen"
+                android:text="Loading Name..."
                 android:textColor="#21242B"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="(bind from tbl_users.name)"
-                tools:ignore="HardcodedText" />
+                android:textStyle="bold" />
 
             <!-- Stats row -->
             <LinearLayout
@@ -173,244 +155,80 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingTop="6dp"
-                android:paddingBottom="6dp">
+                android:orientation="horizontal">
 
+                <!-- Followers -->
                 <LinearLayout
-                    android:id="@+id/LTprofile_statFollowers"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-
                     <TextView
-                        android:id="@+id/LTprofile_tvFollowersCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="1,089"
                         android:textColor="#21242B"
-                        android:textSize="16sp"
                         android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/LTprofile_tvFollowersLabel"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
                         android:text="Followers"
-                        android:textColor="#8A8A8A"
                         android:textSize="12sp"
-                        tools:ignore="HardcodedText,TextContrastCheck" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/LTprofile_div1"
-                    android:layout_width="1dp"
-                    android:layout_height="36dp"
-                    android:background="#E0E0E0" />
-
+                <!-- Following -->
                 <LinearLayout
-                    android:id="@+id/LTprofile_statFollowing"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-
                     <TextView
-                        android:id="@+id/LTprofile_tvFollowingCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="275"
                         android:textColor="#21242B"
-                        android:textSize="16sp"
                         android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/LTprofile_tvFollowingLabel"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
                         android:text="Following"
-                        android:textColor="#8A8A8A"
                         android:textSize="12sp"
-                        tools:ignore="HardcodedText,TextContrastCheck" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
-                <View
-                    android:id="@+id/LTprofile_div2"
-                    android:layout_width="1dp"
-                    android:layout_height="36dp"
-                    android:background="#E0E0E0" />
-
-                <LinearLayout
-                    android:id="@+id/LTprofile_statEvents"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/LTprofile_tvEventsCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10"
-                        android:textColor="#21242B"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText" />
-
-                    <TextView
-                        android:id="@+id/LTprofile_tvEventsLabel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Events"
-                        android:textColor="#8A8A8A"
-                        android:textSize="12sp"
-                        tools:ignore="HardcodedText,TextContrastCheck" />
-                </LinearLayout>
             </LinearLayout>
 
-            <!-- About Me -->
+            <!-- About Me Title -->
             <TextView
                 android:id="@+id/LTprofile_tvAboutTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:text="About Me"
-                android:textColor="#21242B"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                android:textColor="#21242B"/>
 
+            <!-- About Me Text -->
             <TextView
-                android:id="@+id/LTprofile_tvAboutBody"
+                android:id="@+id/LTprofile_tvAboutText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Pellentesque mattis scelerisque aliquam tincidunt lacus. Convallis tortor et tincidunt cras fringilla aliquet amet..."
-                android:textColor="#7A7A7A"
-                android:textSize="13sp"
-                android:lineSpacingExtra="2dp"
-                tools:ignore="HardcodedText,TextContrastCheck" />
+                android:text="This is a bio about the user."
+                android:lineSpacingMultiplier="1.2"/>
 
-            <TextView
-                android:id="@+id/LTprofile_tvReadMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="Read More"
-                android:textColor="#FF7A00"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <!-- Interest -->
-            <TextView
-                android:id="@+id/LTprofile_tvInterestTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="Interest"
-                android:textColor="#21242B"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText" />
-
-            <!-- Favorite Sports (tbl_users.favorite_sports) -->
-            <TextView
-                android:id="@+id/LTprofile_tvFavSportsLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Favorite Sports"
-                android:textColor="#8A8A8A"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/LTprofile_chipGroupSports"
+            <!-- ================= LOGOUT BUTTON (ADDED) ================= -->
+            <Button
+                android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:singleLine="false"
-                app:chipSpacingHorizontal="10dp"
-                app:chipSpacingVertical="10dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipSport1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Volleyball"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipSport2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Basketball"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipSport3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Badminton"
-                    tools:ignore="HardcodedText" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <!-- Favorite Teams (tbl_users.favorite_teams) -->
-            <TextView
-                android:id="@+id/LTprofile_tvFavTeamsLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Favorite Teams"
-                android:textColor="#8A8A8A"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,TextContrastCheck" />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/LTprofile_chipGroupTeams"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:singleLine="false"
-                app:chipSpacingHorizontal="10dp"
-                app:chipSpacingVertical="10dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipTeam1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Japan WNT"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipTeam2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="PVL Team"
-                    tools:ignore="HardcodedText" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/LTprofile_chipTeam3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Creamline"
-                    tools:ignore="HardcodedText" />
-            </com.google.android.material.chip.ChipGroup>
-
-            <!-- bottom spacer so content won't hide behind navbar -->
-            <View
-                android:id="@+id/LTprofile_bottomSpacer"
-                android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="55dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:text="Logout"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FF4444"
+                android:textStyle="bold"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
