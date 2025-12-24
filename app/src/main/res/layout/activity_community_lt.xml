@@ -210,9 +210,9 @@
                         android:id="@+id/LTcommunity_postUser1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="User Name • 2h ago"
-                        android:textStyle="bold"
-                        android:textColor="#21242B" />
+                        android:text="Sophia Tuvera • 2h ago"
+                        android:textColor="#21242B"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/LTcommunity_postContent1"
@@ -260,7 +260,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="User2: That match was intense!"
+                        android:text="Louise Gab: That match was intense!"
                         android:textColor="#6B6B6B"
                         android:textSize="12sp" />
 
