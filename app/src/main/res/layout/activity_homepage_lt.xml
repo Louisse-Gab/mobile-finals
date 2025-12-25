@@ -302,7 +302,7 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- ===== COMMUNITY FEED ===== -->
+            <!-- ===== COMMUNITY FEED (DYNAMIC) ===== -->
             <TextView
                 android:id="@+id/LThome_tvFeedHeader"
                 android:layout_width="wrap_content"
@@ -319,22 +319,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="Recent posts from the community will appear here. (You can edit this later.)"
+                android:text="Recent posts from the community."
                 android:textColor="#6B6B6B"
                 android:textSize="13sp"
                 tools:ignore="HardcodedText" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
-
+            <!-- THIS IS THE CONTAINER WHERE POSTS WILL APPEAR -->
             <LinearLayout
+                android:id="@+id/LThome_feedContainer"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#FFFFFF"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="3dp" />
+                android:layout_marginTop="12dp"
+                android:paddingBottom="80dp"> <!-- Added padding so content isn't hidden by nav bar -->
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

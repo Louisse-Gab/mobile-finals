@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="3dp"
+    android:backgroundTint="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 1. User Name & Date -->
+        <TextView
+            android:id="@+id/tvPostUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Name • Just now"
+            android:textColor="#21242B"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            tools:ignore="HardcodedText" />
+
+        <!-- 2. Post Content -->
+        <TextView
+            android:id="@+id/tvPostContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="This is the post content..."
+            android:textColor="#1E1E1E"
+            android:textSize="15sp"
+            android:lineSpacingMultiplier="1.2"
+            tools:ignore="HardcodedText" />
+
+        <!-- 3. Stats Row (Likes & Comments) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- HEART ICON (Clickable) -->
+            <!-- Your Kotlin code looks for R.id.imgHeart -->
+            <ImageView
+                android:id="@+id/imgHeart"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/heart"
+                android:contentDescription="Like Button"
+                app:tint="#FF4444" />
+            <!-- Note: app:tint is optional. Remove it if your heartfill.xml already has a specific color -->
+
+            <!-- LIKE COUNT -->
+            <!-- Your Kotlin code looks for R.id.tvLikesCount -->
+            <TextView
+                android:id="@+id/tvLikesCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="0"
+                android:textColor="#6B6B6B"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <!-- COMMENTS ICON/TEXT -->
+            <!-- Your Kotlin code looks for R.id.tvCommentsCount -->
+            <TextView
+                android:id="@+id/tvCommentsCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="💬 0"
+                android:textColor="#6B6B6B"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

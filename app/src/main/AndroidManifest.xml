@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LizenTuveraProject">
         <activity
+            android:name=".item_feed_post"
+            android:exported="false" />
+        <activity
             android:name=".signupLT"
             android:exported="true" />
         <activity
@@ -34,24 +37,6 @@
             android:exported="true" />
         <activity
             android:name=".landing"
-            android:exported="true" />
-        <activity
-            android:name=".dashboard"
-            android:exported="true" />
-        <activity
-            android:name=".login"
-            android:exported="true" />
-        <activity
-            android:name=".registration"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity3"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="true" />
-        <activity
-            android:name=".prac"
             android:exported="true" />
 
         <meta-data

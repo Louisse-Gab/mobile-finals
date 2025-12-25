@@ -5,46 +5,104 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDEDED"
+    android:background="#F5F5F5"
     tools:context=".Community_LT">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LTcommunity_header"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:background="#21242B"
-        android:padding="18dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    <!-- TOP BAR -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/LTcommunity_tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Community"
-            android:textColor="#FFFFFF"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="#21242B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/LTcommunity_tvSubtitle"
-            android:layout_width="0dp"
+    <!-- SCROLLABLE CONTENT AREA -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Share updates, discuss matches, and connect with fans."
-            android:textColor="#BFC3C9"
-            android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/LTcommunity_tvTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <!-- CREATE POST SECTION -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share with the community"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"/>
+
+            <EditText
+                android:id="@+id/LTcommunity_etPostContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="What's on your mind?"
+                android:minHeight="100dp"
+                android:gravity="top"
+                android:textSize="16sp"
+                android:textColor="#21242B"
+                android:padding="12dp"/>
+            <!-- Note: if @drawable/lt_input_bg doesn't exist, remove that line or use @android:color/white -->
+
+            <Button
+                android:id="@+id/LTcommunity_btnPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Post"
+                android:textSize="16sp"
+                android:backgroundTint="#FF7A00"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+
+            <!-- DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E0E0E0"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Posts"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="#21242B"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- CONTAINER FOR POSTS (This is where the posts will load) -->
+            <LinearLayout
+                android:id="@+id/LTcommunity_feedContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- BOTTOM NAVIGATION BAR -->
     <androidx.cardview.widget.CardView
-        android:id="@+id/LTcommunity_navCard"
-        android:layout_width="0dp"
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_margin="18dp"
         app:cardCornerRadius="28dp"
@@ -54,226 +112,48 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/LTcommunity_navInner"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:gravity="center"
-            android:paddingHorizontal="20dp">
+            android:orientation="horizontal"
+            android:background="#FFFFFF">
 
             <ImageButton
                 android:id="@+id/LTcommunity_navHome"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:src="@drawable/ic_home"
-                android:contentDescription="Home"
-                app:tint="#21242B" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:tint="#21242B"/>
 
             <ImageButton
                 android:id="@+id/LTcommunity_navDiscover"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:src="@drawable/ic_discover"
-                android:contentDescription="Discover"
-                app:tint="#21242B" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:tint="#21242B"/>
 
             <ImageButton
                 android:id="@+id/LTcommunity_navCommunity"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/lt_nav_center_bg"
                 android:src="@drawable/ic_community"
-                android:contentDescription="Community"
-                app:tint="#FF7A00" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/lt_nav_center_bg"
+                app:tint="#FF7A00"/>
 
             <ImageButton
                 android:id="@+id/LTcommunity_navProfile"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
                 android:src="@drawable/ic_profile"
-                android:contentDescription="Profile"
-                app:tint="#21242B" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                app:tint="#21242B"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/LTcommunity_scroll"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintTop_toBottomOf="@id/LTcommunity_header"
-        app:layout_constraintBottom_toTopOf="@id/LTcommunity_navCard"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <LinearLayout
-            android:id="@+id/LTcommunity_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <!-- ================= CREATE POST BOX ================= -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/LTcommunity_createPostCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="3dp">
-
-                <LinearLayout
-                    android:id="@+id/LTcommunity_createPostContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/LTcommunity_createPostTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Create a post"
-                        android:textStyle="bold"
-                        android:textColor="#21242B" />
-
-                    <EditText
-                        android:id="@+id/LTcommunity_etPostContent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:hint="What's on your mind?"
-                        android:minHeight="90dp"
-                        android:gravity="top|start"
-                        android:padding="12dp"
-                        android:background="@android:color/transparent"
-                        android:inputType="textMultiLine"
-                        android:textColor="#21242B"
-                        android:textColorHint="#6B6B6B"
-                        android:autofillHints="postMessage" />
-
-                    <!-- image preview holder (optional) -->
-
-                    <LinearLayout
-                        android:id="@+id/LTcommunity_createPostActions"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:gravity="end|center_vertical">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/LTcommunity_btnAddImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:text="Add Image"
-                            app:cornerRadius="16dp" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/LTcommunity_btnPost"
-                            android:layout_width="wrap_content"
-                            android:layout_height="48dp"
-                            android:layout_marginStart="10dp"
-                            android:text="Post"
-                            android:textColor="#FFFFFF"
-                            android:backgroundTint="#21242B"
-                            app:cornerRadius="16dp" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- ================= FEED POST ITEM (SAMPLE) ================= -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/LTcommunity_postCard1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:cardCornerRadius="14dp"
-                app:cardElevation="3dp">
-
-                <LinearLayout
-                    android:id="@+id/LTcommunity_postContainer1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:id="@+id/LTcommunity_postUser1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sophia Tuvera • 2h ago"
-                        android:textColor="#21242B"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/LTcommunity_postContent1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="What a performance by Alas Women last night! Proud of the team 🇵🇭🔥"
-                        android:textColor="#1E1E1E" />
-
-                    <ImageView
-                        android:id="@+id/LTcommunity_postImage1"
-                        android:layout_width="match_parent"
-                        android:layout_height="160dp"
-                        android:layout_marginTop="8dp"
-                        android:background="#D9D9D9"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/discover_2"
-                        tools:ignore="ContentDescription" />
-
-                    <LinearLayout
-                        android:id="@+id/LTcommunity_postStats1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/LTcommunity_likesCount1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="❤️ 24"
-                            android:textColor="#6B6B6B" />
-
-                        <TextView
-                            android:id="@+id/LTcommunity_commentsCount1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="💬 5"
-                            android:textColor="#6B6B6B" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/LTcommunity_commentPreview1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="Louise Gab: That match was intense!"
-                        android:textColor="#6B6B6B"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-    <!-- ================= FLOATING ADD POST BUTTON ================= -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.lizentuveraproject // Check your package name!
+package com.example.lizentuveraproject
 
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +19,6 @@ class profileLT : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_profile_lt)
 
-        // Handle system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -27,21 +26,21 @@ class profileLT : AppCompatActivity() {
         }
 
         // --- 1. SETUP VIEWS ---
-        val btnLogout: Button = findViewById(R.id.btnLogout) // The new red button
+        val btnLogout: Button = findViewById(R.id.btnLogout)
         val tvName: TextView = findViewById(R.id.LTprofile_tvName)
 
+        // Navigation Icons
         val navHome: ImageButton = findViewById(R.id.LTdiscover_navHome)
         val navDiscover: ImageButton = findViewById(R.id.LTdiscover_navDiscover)
         val navCommunity: ImageButton = findViewById(R.id.LTdiscover_navCommunity)
-        val navProfile: ImageButton = findViewById(R.id.LTdiscover_navProfile) // The nav icon
+        val navProfile: ImageButton = findViewById(R.id.LTdiscover_navProfile)
 
-        // --- 2. FIREBASE SETUP ---
+        // --- 2. FIREBASE DATA ---
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         val user = auth.currentUser
 
         if (user != null) {
-            // Load user name
             db.collection("tbl_users").document(user.uid).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
@@ -52,7 +51,7 @@ class profileLT : AppCompatActivity() {
         }
 
         // --- 3. LOGOUT LOGIC ---
-        // Only run this when the RED BUTTON is clicked
+        // This is the ONLY place that logs the user out
         btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginLT::class.java)
@@ -61,29 +60,23 @@ class profileLT : AppCompatActivity() {
             finish()
         }
 
-        // --- 4. NAVIGATION BAR LOGIC ---
-
-        // Go Home
+        // --- 4. NAVIGATION LOGIC ---
         navHome.setOnClickListener {
             startActivity(Intent(this, homepage_LT::class.java))
-            finish() // Optional
+            finish()
         }
 
-        // Go Discover
         navDiscover.setOnClickListener {
             startActivity(Intent(this, Discover_LT::class.java))
         }
 
-        // Go Community
         navCommunity.setOnClickListener {
             startActivity(Intent(this, Community_LT::class.java))
         }
 
-        // Go Profile (WE ARE ALREADY HERE)
         navProfile.setOnClickListener {
-            // Do nothing! Or just show a toast.
-            // DO NOT PUT LOGOUT CODE HERE
-            Toast.makeText(this, "You are on the profile page", Toast.LENGTH_SHORT).show()
+            // Do nothing, already here
+            Toast.makeText(this, "You are on Profile", Toast.LENGTH_SHORT).show()
         }
     }
 }
