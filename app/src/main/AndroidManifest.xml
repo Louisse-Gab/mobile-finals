@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LizenTuveraProject">
         <activity
+            android:name=".item_comment"
+            android:exported="false" />
+        <activity
+            android:name=".dialog_comment_lt"
+            android:exported="false" />
+        <activity
             android:name=".item_feed_post"
             android:exported="false" />
         <activity

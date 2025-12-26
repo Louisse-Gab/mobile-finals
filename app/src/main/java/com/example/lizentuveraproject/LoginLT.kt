@@ -20,18 +20,20 @@ class LoginLT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login_lt)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val edtEmail: EditText = findViewById(R.id.LTetEmailLogin)
         val edtPassword: EditText = findViewById(R.id.LTetPasswordLogin)
         val btnLogin: Button = findViewById(R.id.LTbtnLogin)
         val btnGoogle: Button = findViewById(R.id.btnGoogleLT)
 
 
-        //start connection with auth
+        // Start connection with auth
         val auth = FirebaseAuth.getInstance()
         val con = FirebaseFirestore.getInstance()
 
@@ -46,7 +48,6 @@ class LoginLT : AppCompatActivity() {
 
         // --------------------------------------------------------------
         // STEP 2 — Activity Result Launcher (handles result of Google Sign In)
-        // This replaces deprecated onActivityResult()
         // --------------------------------------------------------------
         val googleLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -63,20 +64,25 @@ class LoginLT : AppCompatActivity() {
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
                 auth.signInWithCredential(credential).addOnSuccessListener {
-                    val userid = auth.currentUser!!.uid
-                    val email = auth.currentUser!!.email
-                    val name = auth.currentUser!!.displayName
-                    val values = mapOf(
-                        "name" to name,
-                        "email" to email
-                    )
+                    val user = auth.currentUser
+                    if (user != null) {
+                        val userid = user.uid
+                        val email = user.email
+                        val name = user.displayName
+                        val values = mapOf(
+                            "name" to name,
+                            "email" to email
+                        )
 
-                    con.collection("tbl_users").document(userid).set(values)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Account Created", Toast.LENGTH_SHORT)
-                            val intent = Intent(this, homepage_LT::class.java)
-                            startActivity(intent)
-                        }
+                        // Using set() to save or update user data
+                        con.collection("tbl_users").document(userid).set(values)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, homepage_LT::class.java)
+                                startActivity(intent)
+                                finish() // Close login activity so back button doesn't return here
+                            }
+                    }
                 }
 
             } catch (e: Exception) {
@@ -87,25 +93,34 @@ class LoginLT : AppCompatActivity() {
 
 
         // --------------------------------------------------------------
-        // STEP 8 — When Google button is clicked → launch Google Sign-In
+        // STEP 8 — MODIFIED: Force Sign-out first so account picker appears
         // --------------------------------------------------------------
         btnGoogle.setOnClickListener {
-            googleLauncher.launch(googleClient.signInIntent)
+            // This clears the cache of the previous login
+            googleClient.signOut().addOnCompleteListener {
+                // Once signed out locally, launch the sign-in intent again
+                googleLauncher.launch(googleClient.signInIntent)
+            }
         }
 
+        // Email/Password Login Logic
         btnLogin.setOnClickListener {
             val email = edtEmail.text.toString()
             val pass = edtPassword.text.toString()
 
-            auth.signInWithEmailAndPassword(email, pass) .addOnSuccessListener {
-                Toast.makeText(this, "Log In Successfully", Toast.LENGTH_SHORT)
-                val intent = Intent(this, homepage_LT::class.java)
-                startActivity(intent)
-            }
-                .addOnFailureListener {
-                        e ->
-                    Toast.makeText(this, "Log In Failed" + e.message, Toast.LENGTH_SHORT)
+            if (email.isNotEmpty() && pass.isNotEmpty()) {
+                auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener {
+                    Toast.makeText(this, "Log In Successfully", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, homepage_LT::class.java)
+                    startActivity(intent)
+                    finish()
                 }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Log In Failed: " + e.message, Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
