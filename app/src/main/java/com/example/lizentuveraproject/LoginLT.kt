@@ -27,78 +27,79 @@ class LoginLT : AppCompatActivity() {
             insets
         }
 
-        val edtEmail: EditText = findViewById(R.id.LTetEmailLogin)
-        val edtPassword: EditText = findViewById(R.id.LTetPasswordLogin)
-        val btnLogin: Button = findViewById(R.id.LTbtnLogin)
-        val btnGoogle: Button = findViewById(R.id.btnGoogleLT)
+        // --- Bind UI Elements using IDs from activity_login_lt.xml ---
+        val edtEmail: EditText = findViewById(R.id.LTlogin_etEmail)
+        val edtPassword: EditText = findViewById(R.id.LTlogin_etPassword)
+        val btnLogin: Button = findViewById(R.id.LTlogin_btnLogin)
+        val btnGoogle: Button = findViewById(R.id.LTlogin_btnGoogle)
+        val tvRegister: TextView = findViewById(R.id.LTlogin_tvRegister)
 
-
-        // connection with auth
+        // Firebase Instances
         val auth = FirebaseAuth.getInstance()
         val con = FirebaseFirestore.getInstance()
 
+        // --- CHECK IF USER ALREADY LOGGED IN ---
+        if(auth.currentUser != null){
+            startActivity(Intent(this, homepage_LT::class.java))
+            finish()
+        }
 
+        // --- GOOGLE SIGN IN SETUP ---
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))  // Web client ID
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 
         val googleClient = GoogleSignIn.getClient(this, gso)
 
-
         val googleLauncher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { result ->
-
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
-
             try {
                 val account = task.getResult(ApiException::class.java)
-
                 val credential = GoogleAuthProvider.getCredential(account.idToken, null)
 
                 auth.signInWithCredential(credential).addOnSuccessListener {
                     val user = auth.currentUser
                     if (user != null) {
                         val userid = user.uid
-                        val email = user.email
-                        val name = user.displayName
-                        val values = mapOf(
-                            "name" to name,
-                            "email" to email
+                        val userMap = mapOf(
+                            "name" to user.displayName,
+                            "email" to user.email
                         )
 
-                        con.collection("tbl_users").document(userid).set(values)
+                        con.collection("tbl_users").document(userid).set(userMap) // Overwrites or creates
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Logged In Successfully", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, homepage_LT::class.java)
-                                startActivity(intent)
+                                startActivity(Intent(this, homepage_LT::class.java))
                                 finish()
                             }
                     }
                 }
-
             } catch (e: Exception) {
                 Toast.makeText(this, "Google Login Failed", Toast.LENGTH_SHORT).show()
             }
         }
 
+        // --- BUTTON LISTENERS ---
 
+        // 1. Google Button
         btnGoogle.setOnClickListener {
             googleClient.signOut().addOnCompleteListener {
                 googleLauncher.launch(googleClient.signInIntent)
             }
         }
 
+        // 2. Login Button
         btnLogin.setOnClickListener {
-            val email = edtEmail.text.toString()
-            val pass = edtPassword.text.toString()
+            val email = edtEmail.text.toString().trim()
+            val pass = edtPassword.text.toString().trim()
 
             if (email.isNotEmpty() && pass.isNotEmpty()) {
                 auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener {
                     Toast.makeText(this, "Log In Successfully", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, homepage_LT::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, homepage_LT::class.java))
                     finish()
                 }
                     .addOnFailureListener { e ->
@@ -107,6 +108,12 @@ class LoginLT : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        // 3. Register Link (Navigate to Signup Page)
+        tvRegister.setOnClickListener {
+            startActivity(Intent(this, signupLT::class.java))
+            finish()
         }
     }
 }

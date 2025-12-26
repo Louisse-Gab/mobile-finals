@@ -1,74 +1,77 @@
 package com.example.lizentuveraproject
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import android.widget.*
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import android.content.Intent
 
 class signupLT : AppCompatActivity() {
 
+    private lateinit var auth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_signup_lt)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
-        val editName: EditText = findViewById(R.id.LTetNameSignup)
-        val editEmail: EditText = findViewById(R.id.LTetEmailSignup)
-        val editPassword: EditText = findViewById(R.id.LTetPasswordSignup)
-        val btnRegister: Button = findViewById(R.id.LTbtnSignup)
+        // Inputs
+        val etName = findViewById<TextInputEditText>(R.id.LTetNameSignup)
+        val etEmail = findViewById<TextInputEditText>(R.id.LTetEmailSignup)
+        val etPassword = findViewById<TextInputEditText>(R.id.LTetPasswordSignup)
+        val btnSignup = findViewById<Button>(R.id.LTbtnSignup)
 
-        val db = FirebaseFirestore.getInstance()
-        val auth = FirebaseAuth.getInstance()
+        // Navigation Link
+        val tvLogin = findViewById<TextView>(R.id.LTsignup_tvLogin)
 
-        btnRegister.setOnClickListener {
-            val name = editName.text.toString().trim()
-            val email = editEmail.text.toString().trim()
-            val password = editPassword.text.toString().trim()
+        // 1. SIGNUP BUTTON LOGIC
+        btnSignup.setOnClickListener {
+            val name = etName.text.toString().trim()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString().trim()
 
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
+            // Create User in Firebase Auth
             auth.createUserWithEmailAndPassword(email, password)
-                .addOnSuccessListener {
-
-                    val uid = auth.currentUser!!.uid
-
-                    val userData = hashMapOf(
-                        "user_id" to uid,
+                .addOnSuccessListener { authResult ->
+                    val userId = authResult.user?.uid
+                    val userMap = hashMapOf(
+                        "uid" to userId,
                         "name" to name,
-                        "favorite_sports" to emptyList<String>(),
-                        "favorite_teams" to emptyList<String>(),
-                        "profile_picture" to "" // or a default image URL
+                        "email" to email
                     )
 
-                    db.collection("tbl_users")
-                        .document(uid)
-                        .set(userData)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this, LoginLT::class.java))
-                            finish()
-                        }
-                        .addOnFailureListener {
-                            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                        }
+                    // Save extra details in Firestore
+                    if (userId != null) {
+                        db.collection("tbl_users").document(userId).set(userMap)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this, homepage_LT::class.java))
+                                finish()
+                            }
+                    }
                 }
-                .addOnFailureListener {
-                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Signup Failed: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
+        }
+
+        // 2. REDIRECT TO LOGIN (Navigation Logic)
+        tvLogin.setOnClickListener {
+            val intent = Intent(this, LoginLT::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }

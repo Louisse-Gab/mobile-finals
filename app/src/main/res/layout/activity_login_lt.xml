@@ -5,172 +5,216 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E5E5E5"
-    tools:context=".login">
+    android:background="#FFFFFF"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    tools:context=".LoginLT">
 
-    <!-- Header -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LTlogin_header"
-        android:layout_width="0dp"
-        android:layout_height="230dp"
-        android:background="#21242B"
+    <!-- Header Image -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/spiketronlogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@android:drawable/sym_def_app_icon" />
+
+    <!-- Welcome Text (Centered & Larger) -->
+    <TextView
+        android:id="@+id/tvWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="Welcome Back"
+        android:textColor="#1A1C1E"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:letterSpacing="-0.02"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <!-- Subtitle (Centered & Grey) -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Enter your details below to continue\nyour journey."
+        android:textColor="#74777F"
+        android:textSize="15sp"
+        android:lineSpacingExtra="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
+
+    <!-- Email Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="Email Address"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="#21242B"
+        app:boxStrokeWidthFocused="2dp"
+        app:hintTextColor="#21242B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LTlogin_etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textColor="#1A1C1E"
+            android:paddingVertical="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password Input -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Password"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="#21242B"
+        app:boxStrokeWidthFocused="2dp"
+        app:endIconMode="password_toggle"
+        app:endIconTint="#74777F"
+        app:hintTextColor="#21242B"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/LTlogin_etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="#1A1C1E"
+            android:paddingVertical="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Login Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/LTlogin_btnLogin"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#21242B"
+        android:text="Log In"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:elevation="4dp"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilPassword" />
+
+    <!-- Divider -->
+    <LinearLayout
+        android:id="@+id/layoutDivider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LTlogin_btnLogin">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#E0E0E0" />
 
         <TextView
-            android:id="@+id/LTtvLogoLogin"
+            android:id="@+id/tvOr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SPIKETRON"
-            android:textColor="#FFFFFF"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.805" />
+            android:paddingHorizontal="16dp"
+            android:text="Or continue with"
+            android:textColor="#9E9E9E"
+            android:textSize="12sp"
+            android:textStyle="bold"/>
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="240dp"
-            android:layout_height="115dp"
-            android:layout_marginTop="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/spiketronlogo" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#E0E0E0" />
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Google Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/LTlogin_btnGoogle"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:text="Google"
+        android:textColor="#1A1C1E"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        app:icon="@drawable/google_logo"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutDivider"
+        app:strokeColor="#E0E0E0"
+        app:strokeWidth="1dp" />
+    <!-- NOTE: If you don't have 'google_logo', change app:icon="@null" temporarily -->
 
-    <!-- Content -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/LTlogin_content"
-        android:layout_width="411dp"
-        android:layout_height="514dp"
-        android:background="@drawable/bgwhite"
-        android:clipToOutline="true"
-        android:padding="24dp"
+    <!-- Sign Up Link -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/LTlogin_header"
-        app:layout_constraintVertical_bias="1.0">
-
-        <Button
-            android:id="@+id/btnGoogleLT"
-            android:layout_width="252dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="360dp"
-            android:backgroundTint="#000000"
-            android:text="Sign in with Google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/LTtvWelcomeBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome Back"
-            android:textColor="#222222"
-            android:textSize="22sp"
+            android:text="Don't have an account?"
+            android:textColor="#74777F"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/LTlogin_tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Register"
+            android:textColor="#21242B"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Email -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LTtilEmailLogin"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:hint="Enter email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LTtvWelcomeBack">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/LTetEmailLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Password -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/LTtilPasswordLogin"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:hint="Password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LTtilEmailLogin">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/LTetPasswordLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Login Button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/LTbtnLogin"
-            android:layout_width="153dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#21242B"
-            android:text="LOGIN"
-            android:textColor="#FFFFFF"
-            app:cornerRadius="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/LTtilPasswordLogin" />
-
-        <!-- Sign in with separator -->
-        <LinearLayout
-            android:id="@+id/login_other"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="#CCCCCC" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:text="Sign in with"
-                android:textColor="#888888"
-                android:textSize="12sp" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="#CCCCCC" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:textSize="14sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

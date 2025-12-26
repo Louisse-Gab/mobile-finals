@@ -155,15 +155,6 @@
                 android:textStyle="bold" />
 
             <!-- Email (Optional display) -->
-            <TextView
-                android:id="@+id/tvProfileEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="4dp"
-                android:text="user@example.com"
-                android:textColor="#757575"
-                android:textSize="14sp" />
 
             <!-- Stats Row -->
             <LinearLayout
