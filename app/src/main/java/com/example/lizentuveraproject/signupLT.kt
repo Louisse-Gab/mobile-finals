@@ -22,16 +22,14 @@ class signupLT : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
-        // Inputs
+        // Bind Views
         val etName = findViewById<TextInputEditText>(R.id.LTetNameSignup)
         val etEmail = findViewById<TextInputEditText>(R.id.LTetEmailSignup)
         val etPassword = findViewById<TextInputEditText>(R.id.LTetPasswordSignup)
         val btnSignup = findViewById<Button>(R.id.LTbtnSignup)
-
-        // Navigation Link
         val tvLogin = findViewById<TextView>(R.id.LTsignup_tvLogin)
 
-        // 1. SIGNUP BUTTON LOGIC
+        // --- SIGNUP BUTTON LOGIC ---
         btnSignup.setOnClickListener {
             val name = etName.text.toString().trim()
             val email = etEmail.text.toString().trim()
@@ -56,8 +54,16 @@ class signupLT : AppCompatActivity() {
                     if (userId != null) {
                         db.collection("tbl_users").document(userId).set(userMap)
                             .addOnSuccessListener {
-                                Toast.makeText(this, "Account Created!", Toast.LENGTH_SHORT).show()
-                                startActivity(Intent(this, homepage_LT::class.java))
+                                Toast.makeText(this, "Account Created! Please Log In.", Toast.LENGTH_SHORT).show()
+
+                                // --- CRITICAL FIX ---
+                                // Firebase auto-logins on signup. We must Sign Out explicitly
+                                // so the user is forced to enter their credentials on the Login page.
+                                auth.signOut()
+
+                                // Redirect to LoginLT
+                                val intent = Intent(this, LoginLT::class.java)
+                                startActivity(intent)
                                 finish()
                             }
                     }
@@ -67,7 +73,7 @@ class signupLT : AppCompatActivity() {
                 }
         }
 
-        // 2. REDIRECT TO LOGIN (Navigation Logic)
+        // --- NAVIGATION TO LOGIN ---
         tvLogin.setOnClickListener {
             val intent = Intent(this, LoginLT::class.java)
             startActivity(intent)
