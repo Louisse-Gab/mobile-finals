@@ -21,17 +21,14 @@ class landing : AppCompatActivity() {
             insets
         }
 
-        // Buttons
         val btnLogin: Button = findViewById(R.id.btnLoginLT)
         val btnSignUp: Button = findViewById(R.id.btnSignupLT)
 
-        // 👉 Login button intent
         btnLogin.setOnClickListener {
             val intent = Intent(this, LoginLT::class.java)
             startActivity(intent)
         }
 
-        // 👉 Signup button intent
         btnSignUp.setOnClickListener {
             val intent = Intent(this, signupLT::class.java)
             startActivity(intent)

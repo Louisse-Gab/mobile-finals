@@ -25,17 +25,14 @@ class profileLT : AppCompatActivity() {
             insets
         }
 
-        // --- 1. SETUP VIEWS ---
         val btnLogout: Button = findViewById(R.id.btnLogout)
         val tvName: TextView = findViewById(R.id.LTprofile_tvName)
 
-        // Navigation Icons
         val navHome: ImageButton = findViewById(R.id.LTdiscover_navHome)
         val navDiscover: ImageButton = findViewById(R.id.LTdiscover_navDiscover)
         val navCommunity: ImageButton = findViewById(R.id.LTdiscover_navCommunity)
         val navProfile: ImageButton = findViewById(R.id.LTdiscover_navProfile)
 
-        // --- 2. FIREBASE DATA ---
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
         val user = auth.currentUser
@@ -50,8 +47,6 @@ class profileLT : AppCompatActivity() {
                 }
         }
 
-        // --- 3. LOGOUT LOGIC ---
-        // This is the ONLY place that logs the user out
         btnLogout.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginLT::class.java)
@@ -60,7 +55,6 @@ class profileLT : AppCompatActivity() {
             finish()
         }
 
-        // --- 4. NAVIGATION LOGIC ---
         navHome.setOnClickListener {
             startActivity(Intent(this, homepage_LT::class.java))
             finish()

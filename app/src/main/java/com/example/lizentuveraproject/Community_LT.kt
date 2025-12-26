@@ -20,26 +20,22 @@ import java.util.ArrayList
 
 class Community_LT : AppCompatActivity() {
 
-    // Firebase instances
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
-    // Variable to store the current user's name to use when commenting
     private var currentUserName: String = "Community Member"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_community_lt)
-
-        // Handle Status Bar/Insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // --- PRE-FETCH USER NAME ---
+        // fetch user
         val user = auth.currentUser
         if (user != null) {
             db.collection("tbl_users").document(user.uid).get()
@@ -50,16 +46,13 @@ class Community_LT : AppCompatActivity() {
                 }
         }
 
-        // --- 1. SETUP VIEWS ---
         val etPostContent: EditText = findViewById(R.id.LTcommunity_etPostContent)
         val btnPost: Button = findViewById(R.id.LTcommunity_btnPost)
         val feedContainer: LinearLayout = findViewById(R.id.LTcommunity_feedContainer)
 
 
-        // --- 2. LOAD EXISTING POSTS ---
         loadCommunityPosts(feedContainer)
 
-        // --- 3. CREATE POST LOGIC ---
         btnPost.setOnClickListener {
             val content = etPostContent.text.toString().trim()
             val currentUser = auth.currentUser
@@ -106,8 +99,6 @@ class Community_LT : AppCompatActivity() {
 
         setupNavigation()
     }
-
-    // --- HELPER: Load Posts ---
     private fun loadCommunityPosts(container: LinearLayout) {
         val currentUserId = auth.currentUser?.uid
 
@@ -117,6 +108,7 @@ class Community_LT : AppCompatActivity() {
             .addOnSuccessListener { documents ->
                 container.removeAllViews()
 
+                //declare
                 for (document in documents) {
                     val inflater = LayoutInflater.from(this)
                     val postView = inflater.inflate(R.layout.item_feed_post, container, false)
@@ -142,7 +134,7 @@ class Community_LT : AppCompatActivity() {
                     tvComments.text = "💬 $comments"
                     tvUser.text = "Community Member • $dateString"
 
-                    // Like Logic
+                    // like
                     fun updateLikeStatus() {
                         tvLikesCount.text = likedBy.size.toString()
                         if (currentUserId != null && likedBy.contains(currentUserId)) {
@@ -168,8 +160,8 @@ class Community_LT : AppCompatActivity() {
                             mapOf("likes_by" to likedBy, "likes_count" to likedBy.size)
                         )
                     }
+                    // Comment
 
-                    // Comment Logic
                     tvComments.setOnClickListener {
                         showCommentDialog(postId, tvComments)
                     }
@@ -182,7 +174,6 @@ class Community_LT : AppCompatActivity() {
             }
     }
 
-    // --- HELPER: Show Comments Dialog ---
     private fun showCommentDialog(postId: String, tvCommentCount: TextView) {
         val currentUser = auth.currentUser
         if (currentUser == null) {
@@ -190,7 +181,6 @@ class Community_LT : AppCompatActivity() {
             return
         }
 
-        // 1. Inflate Dialog
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_comment_lt, null)
         val containerComments = dialogView.findViewById<LinearLayout>(R.id.dialog_comments_container)
         val etComment = dialogView.findViewById<EditText>(R.id.dialog_etComment)
@@ -201,7 +191,6 @@ class Community_LT : AppCompatActivity() {
             .setCancelable(true)
             .create()
 
-        // 2. Load Comments Function (Updated for Look & Feel)
         fun loadComments() {
             db.collection("tbl_comments")
                 .whereEqualTo("post_id", postId)
@@ -218,23 +207,17 @@ class Community_LT : AppCompatActivity() {
                     }
 
                     for (doc in documents) {
-                        // --- INFLATE THE NEW PRETTY ITEM ---
                         val commentView = LayoutInflater.from(this).inflate(R.layout.item_comment, containerComments, false)
 
-                        // Find Views
                         val tvName = commentView.findViewById<TextView>(R.id.comment_tvUser) // Note: ID depends on item_comment.xml
                         val tvContent = commentView.findViewById<TextView>(R.id.comment_tvContent)
 
-                        // Get Data
                         val content = doc.getString("content")
-                        // If user_name was saved, use it. If not (old comments), default to "Member"
                         val name = doc.getString("user_name") ?: "Community Member"
 
-                        // Set Data
                         tvName.text = name
                         tvContent.text = content
 
-                        // Add to list
                         containerComments.addView(commentView)
                     }
                 }
@@ -248,7 +231,6 @@ class Community_LT : AppCompatActivity() {
 
         loadComments()
 
-        // 3. Send Button Logic (Now saves user_name too)
         btnSend.setOnClickListener {
             val commentText = etComment.text.toString().trim()
             if (commentText.isNotEmpty()) {
@@ -258,18 +240,17 @@ class Community_LT : AppCompatActivity() {
                     "comment_id" to newCommentRef.id,
                     "post_id" to postId,
                     "user_id" to currentUser.uid,
-                    "user_name" to currentUserName, // <--- SAVING THE NAME HERE
+                    "user_name" to currentUserName,
                     "content" to commentText,
                     "timestamp" to FieldValue.serverTimestamp()
                 )
 
                 newCommentRef.set(commentMap).addOnSuccessListener {
                     etComment.setText("")
-                    loadComments() // Reload to see your new comment immediately
+                    loadComments()
 
                     db.collection("tbl_posts").document(postId).update("comments_count", FieldValue.increment(1))
 
-                    // Update UI Counter
                     val currentText = tvCommentCount.text.toString()
                     try {
                         val parts = currentText.split(" ")
@@ -286,7 +267,6 @@ class Community_LT : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        // Navigation Code (Same as before)
         findViewById<ImageButton>(R.id.LTcommunity_navHome).setOnClickListener {
             startActivity(Intent(this, homepage_LT::class.java))
             finish()

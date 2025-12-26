@@ -20,9 +20,6 @@ class Discover_LT : AppCompatActivity() {
             insets
         }
 
-        // ----------------------------------
-        // NAVIGATION BUTTONS (same style)
-        // ----------------------------------
         val LTdiscover_navHome: ImageButton = findViewById(R.id.LTdiscover_navHome)
         val LTdiscover_navDiscover: ImageButton = findViewById(R.id.LTdiscover_navDiscover)
         val LTdiscover_navCommunity: ImageButton = findViewById(R.id.LTdiscover_navCommunity)
@@ -34,7 +31,6 @@ class Discover_LT : AppCompatActivity() {
         }
 
         LTdiscover_navDiscover.setOnClickListener {
-            // Already on Discover page
         }
 
         LTdiscover_navCommunity.setOnClickListener {

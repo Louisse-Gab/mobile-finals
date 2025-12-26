@@ -27,15 +27,11 @@ class homepage_LT : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_homepage_lt)
-
-        // Handle Status Bar Insets
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        // --- 1. DYNAMIC GREETING LOGIC ---
         val tvHello: TextView = findViewById(R.id.LThome_tvHello)
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
@@ -56,7 +52,6 @@ class homepage_LT : AppCompatActivity() {
             tvHello.text = "Hello, Guest"
         }
 
-        // --- 2. LOAD FEED ---
         val feedContainer: LinearLayout? = findViewById(R.id.LThome_feedContainer)
         if (feedContainer != null) {
             loadHomePosts(feedContainer)
@@ -64,14 +59,12 @@ class homepage_LT : AppCompatActivity() {
             Toast.makeText(this, "Error: Feed container not found in XML", Toast.LENGTH_LONG).show()
         }
 
-        // --- 3. NAVIGATION BUTTONS ---
         val navHome: ImageButton = findViewById(R.id.LTdiscover_navHome)
         val navDiscover: ImageButton = findViewById(R.id.LTdiscover_navDiscover)
         val navCommunity: ImageButton = findViewById(R.id.LTdiscover_navCommunity)
         val navProfile: ImageButton = findViewById(R.id.LTdiscover_navProfile)
 
         navHome.setOnClickListener {
-            // Reload feed if clicked while on home
             if (feedContainer != null) {
                 feedContainer.removeAllViews()
                 loadHomePosts(feedContainer)
@@ -100,7 +93,7 @@ class homepage_LT : AppCompatActivity() {
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
-                container.removeAllViews() // Clear to prevent duplicates
+                container.removeAllViews()
 
                 for (document in documents) {
                     val inflater = LayoutInflater.from(this)
@@ -120,35 +113,28 @@ class homepage_LT : AppCompatActivity() {
                     val timestamp = document.getTimestamp("timestamp")
                     val postId = document.id
 
-                    // Get the list of people who liked the post
                     val likedBy = document.get("likes_by") as? ArrayList<String> ?: arrayListOf()
 
-                    // 3. Format Date
                     var dateString = "Just now"
                     if (timestamp != null) {
                         dateString = DateFormat.format("MMM dd, hh:mm a", timestamp.toDate()).toString()
                     }
 
-                    // 4. Set Content
                     tvContent.text = content
                     tvComments.text = "💬 $comments"
                     tvUser.text = "Shared Post • $dateString"
 
-                    // --- 5. LIKE BUTTON LOGIC (ICON SWAPPING) ---
 
                     fun updateLikeStatus() {
                         tvLikesCount.text = likedBy.size.toString()
 
                         if (currentUserId != null && likedBy.contains(currentUserId)) {
-                            // User HAS liked it -> Use Filled Heart
                             imgHeart.setImageResource(R.drawable.heartfill)
                         } else {
-                            // User has NOT liked it -> Use Outline Heart
                             imgHeart.setImageResource(R.drawable.heart)
                         }
                     }
 
-                    // Initial update
                     updateLikeStatus()
 
                     imgHeart.setOnClickListener {
@@ -165,7 +151,7 @@ class homepage_LT : AppCompatActivity() {
                             likedBy.add(currentUserId)
                         }
 
-                        updateLikeStatus() // Update UI immediately
+                        updateLikeStatus()
 
                         // Save to Firebase
                         db.collection("tbl_posts").document(postId).update(
@@ -174,15 +160,12 @@ class homepage_LT : AppCompatActivity() {
                                 "likes_count" to likedBy.size
                             )
                         ).addOnFailureListener {
-                            // Revert on failure
                             if (likedBy.contains(currentUserId)) likedBy.remove(currentUserId)
                             else likedBy.add(currentUserId)
                             updateLikeStatus()
                             Toast.makeText(this, "Failed to update like", Toast.LENGTH_SHORT).show()
                         }
                     }
-
-                    // --- 6. COMMENT LOGIC (Click Listener) ---
                     tvComments.setOnClickListener {
                         showCommentDialog(postId, tvComments)
                     }
@@ -195,7 +178,6 @@ class homepage_LT : AppCompatActivity() {
             }
     }
 
-    // --- HELPER: SHOW COMMENT DIALOG ---
     private fun showCommentDialog(postId: String, tvCommentCount: TextView) {
         val auth = FirebaseAuth.getInstance()
         val db = FirebaseFirestore.getInstance()
@@ -206,10 +188,8 @@ class homepage_LT : AppCompatActivity() {
             return
         }
 
-        // Create input field for dialog
         val input = EditText(this)
         input.hint = "Write a comment..."
-        // Add padding: left, top, right, bottom
         input.setPadding(50, 40, 50, 40)
 
         AlertDialog.Builder(this)
@@ -219,7 +199,6 @@ class homepage_LT : AppCompatActivity() {
                 val commentText = input.text.toString().trim()
 
                 if (commentText.isNotEmpty()) {
-                    // Create new comment reference
                     val newCommentRef = db.collection("tbl_comments").document()
 
                     val commentMap = hashMapOf(
@@ -230,17 +209,14 @@ class homepage_LT : AppCompatActivity() {
                         "timestamp" to FieldValue.serverTimestamp()
                     )
 
-                    // Save comment
                     newCommentRef.set(commentMap)
                         .addOnSuccessListener {
                             Toast.makeText(this, "Comment posted!", Toast.LENGTH_SHORT).show()
 
-                            // Update count in tbl_posts
                             val postRef = db.collection("tbl_posts").document(postId)
                             postRef.update("comments_count", FieldValue.increment(1))
                                 .addOnSuccessListener {
-                                    // Update UI text immediately
-                                    val currentText = tvCommentCount.text.toString() // e.g. "💬 5"
+                                    val currentText = tvCommentCount.text.toString()
                                     try {
                                         val parts = currentText.split(" ")
                                         if (parts.size >= 2) {
@@ -248,7 +224,6 @@ class homepage_LT : AppCompatActivity() {
                                             tvCommentCount.text = "💬 ${currentCount + 1}"
                                         }
                                     } catch (e: Exception) {
-                                        // Ignore parsing errors
                                     }
                                 }
                         }
